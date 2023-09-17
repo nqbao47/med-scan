@@ -1,12 +1,12 @@
-import Home from '../pages/Home';
-import Following from '../pages/Following';
-import Search from '../pages/Search';
+import Guide from '../pages/Guide';
+import MedScan from '../pages/MedScan';
+import Other from '../pages/Other';
 
 //Khong can quyen (dang nhap) van su dung duoc
 const publicRoutes = [
-    { path: '/', component: Home },
-    { path: '/search', component: Search },
-    { path: '/following', component: Following },
+    { path: '/guide', component: Guide },
+    { path: '/medscan', component: MedScan },
+    { path: '/others', component: Other },
 ];
 
 //bat buoc phai co quyen (dang nhap), neu khong se route ve trang dang nhap
