@@ -1,5 +1,5 @@
 const routes = {
-    guide: '/guide',
+    guide: '/',
     medscan: '/medscan',
     others: '/others',
 };

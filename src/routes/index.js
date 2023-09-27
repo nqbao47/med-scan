@@ -4,7 +4,7 @@ import Other from '../pages/Other';
 
 //Khong can quyen (dang nhap) van su dung duoc
 const publicRoutes = [
-    { path: '/guide', component: Guide },
+    { path: '/', component: Guide },
     { path: '/medscan', component: MedScan },
     { path: '/others', component: Other },
 ];
