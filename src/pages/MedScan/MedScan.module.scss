@@ -1,0 +1,85 @@
+.wrapper {
+    width: 100%;
+    height: 450px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.left-extract {
+    width: 70%;
+    /* Độ rộng cố định của left-extract (50% của container) */
+    padding: 10px;
+    border-right: 1px solid #ccc;
+}
+
+.divider {
+    width: 1px;
+    /* Độ rộng của đường kẻ dọc */
+    background-color: #000;
+    /* Màu của đường kẻ dọc */
+    height: 100%;
+    /* Chiều cao của đường kẻ dọc, bạn có thể điều chỉnh theo mong muốn */
+    margin: 0 10px;
+    /* Khoảng cách giữa đường kẻ và hai phần bên */
+}
+
+.right-extract {
+    width: 50%;
+    /* Độ rộng cố định của left-extract (50% của container) */
+    padding: 10px;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 400px;
+    margin-top: 10px;
+}
+
+.action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .custom-input {
+        width: 170px;
+        height: 44px;
+        text-align: center;
+        background-color: #0074D9;
+        color: #FFFFFF;
+        border-radius: 15px 15px;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: background-color 0.5s ease;
+
+        &:hover {
+            background-color: #004794;
+        }
+
+        /* Ẩn mặc định nút chọn file */
+        input[type="file"] {
+            display: none;
+        }
+    }
+
+    .extract-button {
+        width: 170px;
+        height: 44px;
+        text-align: center;
+        background-color: var(--primary-color);
+        color: #FFFFFF;
+        border-radius: 15px 15px;
+        padding: 10px 7.04px;
+        margin-top: 5px;
+        cursor: pointer;
+        transition: background-color 0.5s ease;
+
+        &:hover {
+            background-color: #700d21;
+        }
+    }
+}
