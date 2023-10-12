@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { fetchMedicines } from '../../api/api';
 import classNames from 'classnames/bind';
 import style from './MedScan.module.scss';
+import { uploadImage } from '../../api/api';
 
 const cx = classNames.bind(style);
 
 function MedScan() {
-    const [medicines, setMedicines] = useState([]);
+    const [message, setMessage] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
 
@@ -23,7 +23,23 @@ function MedScan() {
         console.log('handleImageChange is actived');
     };
 
-    const handleExtracted = () => {};
+    const handleExtracted = async () => {
+        if (selectedImage) {
+            try {
+                // Gửi hình ảnh lên server và chờ phản hồi từ server cho responese
+                const response = await uploadImage(selectedImage);
+
+                // Xử lý dữ liệu trả về từ server (nếu cần)
+                setMessage('Hình ảnh đã được xử lý thành công.');
+
+                // Tiếp theo, bạn có thể thực hiện bất kỳ xử lý nào khác sau khi đã gửi hình ảnh lên server
+            } catch (error) {
+                setMessage('Lỗi khi gửi hình ảnh lên server: ' + error.message);
+            }
+        } else {
+            setMessage('Vui lòng chọn một hình ảnh trước khi gửi lên server.');
+        }
+    };
 
     return (
         <div>
@@ -36,11 +52,6 @@ function MedScan() {
                     )}
                 </div>
                 <div className="divider"></div> {/* Đường kẻ dọc */}
-                <div className="right-extracted">
-                    <p>Tên thuốc: Paracetamol</p>
-                    <p>Chỉ định: Giảm đau</p>
-                    <p>Vỉ: 10 viên</p>
-                </div>
             </div>
             {/* Thao tác tải lên hình ảnh */}
             <div className={cx('action')}>
@@ -52,6 +63,7 @@ function MedScan() {
                     Trích xuất hoá đơn
                     <button onClick={handleExtracted}></button>
                 </label>
+                {message && <div>{message}</div>}
             </div>
         </div>
     );

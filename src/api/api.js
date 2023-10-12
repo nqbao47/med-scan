@@ -1,10 +1,18 @@
 import axios from 'axios';
 
-const backendURL = 'http://localhost:5000'; // Địa chỉ BackEnd của bạn
+const backendURL = 'http://localhost:5000'; // Địa chỉ BackEnd
 
-export const fetchExtracted = async () => {
+export const uploadImage = async (imageFile) => {
     try {
-        const response = await axios.get(`${backendURL}/api/process_invoice`);
+        const formData = new FormData();
+        formData.append('image', imageFile);
+
+        const response = await axios.post(`${backendURL}/api/upload_image`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data', //Content-Type là 'multipart/form-data' để xác định rằng dữ liệu gửi lên là dạng form data
+            },
+        });
+
         return response.data;
     } catch (error) {
         throw error;
