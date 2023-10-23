@@ -9,6 +9,7 @@ function MedScan() {
     const [message, setMessage] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
+    const [medicineNames, setMedicineNames] = useState([]);
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -26,13 +27,16 @@ function MedScan() {
     const handleExtracted = async () => {
         if (selectedImage) {
             try {
-                // Gửi hình ảnh lên server và chờ phản hồi từ server cho responese
+                // Gửi hình ảnh lên server và chờ phản hồi từ server
                 const response = await uploadImage(selectedImage);
+                const medicineInfo = response.medicine_info;
 
-                // Xử lý dữ liệu trả về từ server (nếu cần)
-                setMessage('Hình ảnh đã được xử lý thành công.');
-
-                // Tiếp theo, bạn có thể thực hiện bất kỳ xử lý nào khác sau khi đã gửi hình ảnh lên server
+                if (Array.isArray(medicineInfo)) {
+                    setMedicineNames(medicineInfo);
+                    setMessage('Done');
+                } else {
+                    setMessage('Không có thông tin thuốc được tìm thấy');
+                }
             } catch (error) {
                 setMessage('Lỗi khi gửi hình ảnh lên server: ' + error.message);
             }
@@ -44,7 +48,7 @@ function MedScan() {
     return (
         <div>
             {/* Giao diện tải lên hình ảnh */}
-            <h2>Tải lên hình ảnh</h2>
+            <h2>Hãy tải lên hoá đơn của bạn</h2>
             <div className={cx('wrapper')}>
                 <div className="left-extracted">
                     {imagePreview && (
@@ -52,7 +56,16 @@ function MedScan() {
                     )}
                 </div>
                 <div className="divider"></div> {/* Đường kẻ dọc */}
+                {/* Hiển thị medicineName */}
+                <div className={cx('right-extracted')}>
+                    <ul>
+                        {medicineNames.map((medicineName, index) => (
+                            <li key={index}>{medicineName.Medicine_Name}</li>
+                        ))}
+                    </ul>
+                </div>
             </div>
+
             {/* Thao tác tải lên hình ảnh */}
             <div className={cx('action')}>
                 <label className={cx('custom-input')}>

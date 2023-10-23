@@ -55,9 +55,10 @@ function Header() {
                     </div>
                 </Tippy>
                 <div className={cx('actions')}>
-                    <a>Sharing</a>
-                    <a>Contact</a>
-                    <a>More</a>
+                    <a href="https://www.facebook.com/kudoshinichi.shinichi.37/">Liên hệ</a>
+                    <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSBmXHnmrqbkbCngBjhKSttPhVZFlBlnXqVHsTQWvrRpsBQPrrpTxmCCglzWxVpGtmCkGGjz">
+                        Đóng góp
+                    </a>
                 </div>
             </div>
         </header>

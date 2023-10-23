@@ -19,7 +19,7 @@ function Guide() {
 
     return (
         <div>
-            <h1>Đọc kỹ hướng dẫn để sử dụng nha</h1>
+            <h2>Chào mừng bạn!</h2>
             {guideds.map((guided, index) => (
                 <div key={index}>
                     <h3>{guided.title}</h3>

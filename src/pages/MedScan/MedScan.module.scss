@@ -17,14 +17,12 @@
 }
 
 .divider {
-    width: 1px;
-    /* Độ rộng của đường kẻ dọc */
-    background-color: #000;
-    /* Màu của đường kẻ dọc */
-    height: 100%;
-    /* Chiều cao của đường kẻ dọc, bạn có thể điều chỉnh theo mong muốn */
-    margin: 0 10px;
-    /* Khoảng cách giữa đường kẻ và hai phần bên */
+    width: 1px; /* Độ rộng của đường kẻ dọc */
+    height: 100%; /* Chiều cao tối đa */
+    background-color: #000; /* Màu sắc của đường kẻ dọc */
+    margin: 10px 10px; /* Khoảng cách giữa đường kẻ và phần tử xung quanh (điều này có thể được điều chỉnh theo ý muốn) */
+    content: '|'; /* Thêm nội dung trống để hiển thị đường kẻ */
+    display: block; /* Đảm bảo phần tử có kích thước */
 }
 
 .right-extract {
@@ -35,7 +33,7 @@
 
 .image-preview {
     max-width: 100%;
-    max-height: 400px;
+    max-height: 425px;
     margin-top: 10px;
 }
 
@@ -48,8 +46,8 @@
         width: 170px;
         height: 44px;
         text-align: center;
-        background-color: #0074D9;
-        color: #FFFFFF;
+        background-color: #0074d9;
+        color: #ffffff;
         border-radius: 15px 15px;
         padding: 10px 20px;
         margin-top: 10px;
@@ -61,7 +59,7 @@
         }
 
         /* Ẩn mặc định nút chọn file */
-        input[type="file"] {
+        input[type='file'] {
             display: none;
         }
     }
@@ -71,7 +69,7 @@
         height: 44px;
         text-align: center;
         background-color: var(--primary-color);
-        color: #FFFFFF;
+        color: #ffffff;
         border-radius: 15px 15px;
         padding: 10px 7.04px;
         margin-top: 5px;
