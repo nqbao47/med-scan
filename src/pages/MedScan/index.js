@@ -11,6 +11,19 @@ function MedScan() {
     const [imagePreview, setImagePreview] = useState(null);
     const [medicineNames, setMedicineNames] = useState([]);
 
+    useEffect(() => {
+        const savedImagePreview = localStorage.getItem('imagePreview');
+        const savedMedicineNames = JSON.parse(localStorage.getItem('medicineNames'));
+
+        if (savedImagePreview) {
+            setImagePreview(savedImagePreview);
+        }
+
+        if (savedMedicineNames) {
+            setMedicineNames(savedMedicineNames);
+        }
+    }, []);
+
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -18,6 +31,7 @@ function MedScan() {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImagePreview(reader.result);
+                localStorage.setItem('imagePreview', reader.result);
             };
             reader.readAsDataURL(file);
         }
@@ -33,6 +47,7 @@ function MedScan() {
 
                 if (Array.isArray(medicineInfo)) {
                     setMedicineNames(medicineInfo);
+                    localStorage.setItem('medicineNames', JSON.stringify(medicineInfo));
                     setMessage('Done');
                 } else {
                     setMessage('Không có thông tin thuốc được tìm thấy');

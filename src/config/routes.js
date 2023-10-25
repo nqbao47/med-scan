@@ -1,6 +1,7 @@
 const routes = {
     guide: '/',
     medscan: '/medscan',
+    search: '/search',
     others: '/others',
 };
 

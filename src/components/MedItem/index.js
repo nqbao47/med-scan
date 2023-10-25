@@ -1,21 +1,19 @@
 import classNames from 'classnames/bind';
 import styles from './MedItem.module.scss';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function MedItem() {
+function MedItem({ data }) {
+    const { id, name } = data; // Lấy trường name từ obj data
+
     return (
         <div className={cx('wrapper')}>
-            <img
-                className={cx('avatar')}
-                src="https://www.dhgpharma.com.vn/images/stories/virtuemart/product/Hapacol%20650.png"
-                alt="hapacol"
-            />
             <div className={cx('info')}>
                 <h4 className={cx('name')}>
-                    <span>Hapacol</span>
+                    {/* <span>{name}</span> */}
+                    <Link to={`/search/${id}`}>{name}</Link>
                 </h4>
-                <span className={cx('mandates')}>Giảm đau</span>
             </div>
         </div>
     );
