@@ -31,11 +31,20 @@ function Search() {
 
     return (
         <div>
-            <h1>Thông tin thuốc:</h1>
+            <br></br>
+            <h2 style={{ textAlign: 'center', marginBottom: '10px' }}>THÔNG TIN THUỐC</h2>
             {medicineDetails ? (
                 <div>
-                    <h2>{medicineDetails.name}</h2>
+                    <h2 style={{ color: 'green' }}>{medicineDetails.name}</h2>
                     <div dangerouslySetInnerHTML={createMarkup(medicineDetails.longDescription)} />
+                    {/* {medicineDetails.images && medicineDetails.images.length > 0 && (
+                        <div>
+                            <h3>Hình ảnh sản phẩm:</h3>
+                            {medicineDetails.images.map((image, index) => (
+                                <img key={index} src={image.url} alt={`Hình ảnh ${index}`} />
+                            ))}
+                        </div>
+                    )} */}
                 </div>
             ) : (
                 <p>Không tìm thấy thông tin cho ID "{id}"</p>

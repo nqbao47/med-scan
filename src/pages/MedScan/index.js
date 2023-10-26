@@ -62,8 +62,9 @@ function MedScan() {
 
     return (
         <div>
+            <br></br>
             {/* Giao diện tải lên hình ảnh */}
-            <h2>Hãy tải lên hoá đơn của bạn</h2>
+            <h2 style={{ textAlign: 'center', marginBottom: '10px' }}>TẢI LÊN HOÁ ĐƠN CỦA BẠN TẠI ĐÂY </h2>
             <div className={cx('wrapper')}>
                 <div className="left-extracted">
                     {imagePreview && (

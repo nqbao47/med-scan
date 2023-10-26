@@ -1,8 +1,8 @@
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 // import Button from '../../../Button';
 import styles from './Header.module.scss';
@@ -16,7 +16,6 @@ const cx = classNames.bind(styles);
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
     const [searchQuery, setSearchQuery] = useState(''); // Thêm state để lưu trữ giá trị từ ô nhập liệu
-    const tippyInstance = useRef(null); // Tham chiếu đến Tippy
 
     useEffect(() => {
         setTimeout(() => {
@@ -27,7 +26,6 @@ function Header() {
     const handleSearch = async () => {
         try {
             setSearchResult([]);
-            openTippy();
 
             // Gọi hàm searchMedicine với giá trị từ ô nhập liệu (searchQuery)
             const responseText = await searchMedicine(searchQuery);
@@ -46,22 +44,7 @@ function Header() {
     const handleClearSearch = () => {
         setSearchQuery('');
         setSearchResult([]);
-        closeTippy();
         console.log('handleClearSearch is actived');
-    };
-
-    // Hàm để mở Tippy
-    const openTippy = () => {
-        if (tippyInstance.current) {
-            tippyInstance.current.show();
-        }
-    };
-
-    // Hàm để đóng Tippy
-    const closeTippy = () => {
-        if (tippyInstance.current) {
-            tippyInstance.current.hide();
-        }
     };
 
     return (
@@ -80,9 +63,7 @@ function Header() {
                                 {searchResult && Array.isArray(searchResult) && searchResult.length > 0 ? (
                                     searchResult
                                         .slice(0, 8)
-                                        .map((result, index) => (
-                                            <MedItem key={index} data={result} onClick={closeTippy} />
-                                        ))
+                                        .map((result, index) => <MedItem key={index} data={result} />)
                                 ) : (
                                     <p>No results found</p>
                                 )}
@@ -92,7 +73,7 @@ function Header() {
                 >
                     <div className={cx('search')}>
                         <input
-                            placeholder="Search your medicines"
+                            placeholder="Nhập tên thuốc bạn cần tìm..."
                             spellCheck={false}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)} // Cập nhật giá trị searchQuery khi người dùng nhập
@@ -108,8 +89,13 @@ function Header() {
                     </div>
                 </Tippy>
                 <div className={cx('actions')}>
-                    <a href="https://www.facebook.com/kudoshinichi.shinichi.37/">Liên hệ</a>
-                    <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSBmXHnmrqbkbCngBjhKSttPhVZFlBlnXqVHsTQWvrRpsBQPrrpTxmCCglzWxVpGtmCkGGjz">
+                    <a className={cx('link')} href="https://www.facebook.com/kudoshinichi.shinichi.37/">
+                        Liên hệ
+                    </a>
+                    <a
+                        className={cx('link')}
+                        href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSBmXHnmrqbkbCngBjhKSttPhVZFlBlnXqVHsTQWvrRpsBQPrrpTxmCCglzWxVpGtmCkGGjz"
+                    >
                         Đóng góp
                     </a>
                 </div>

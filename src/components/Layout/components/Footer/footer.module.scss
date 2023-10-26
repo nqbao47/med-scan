@@ -1,0 +1,23 @@
+.wrapper {
+    width: 100%;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    background-color: #E5E5E5;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.content-bottom {
+    text-align: center;
+    font-size: 10px;
+}
+
+
+.content-bottom p:first-child {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.content-bottom p:not(:first-child) {
+    margin: 5px 0;
+}

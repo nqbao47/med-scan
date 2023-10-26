@@ -10,10 +10,10 @@ function Sidebar() {
     return (
         <aside className={cx('wrapper')}>
             <Menu>
-                <MenuItem title="GUIDE LINE" to={config.routes.guide} icon={<GuideIcon />} />
-                <MenuItem title="Scan your Invoice" to={config.routes.medscan} icon={<MedScanIcon />} />
-                <MenuItem title="Search Page" to={config.routes.search} icon={<MedScanIcon />} />
-                <MenuItem title="Orther" to={config.routes.others} icon={<OtherIcon />} />
+                <MenuItem title="Giới thiệu" to={config.routes.guide} icon={<GuideIcon />} />
+                <MenuItem title="Quét hoá đơn" to={config.routes.medscan} icon={<MedScanIcon />} />
+                <MenuItem title="Chi tiết Thuốc" to={config.routes.search} icon={<MedScanIcon />} />
+                {/* <MenuItem title="Khác..." to={config.routes.others} icon={<OtherIcon />} /> */}
             </Menu>
         </aside>
     );

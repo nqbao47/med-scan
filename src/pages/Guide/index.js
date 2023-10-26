@@ -19,11 +19,15 @@ function Guide() {
 
     return (
         <div>
-            <h2>Chào mừng bạn!</h2>
+            <br></br>
+            <h2 style={{ textAlign: 'center', marginBottom: '10px' }}>
+                TẠI SAO BẠN NÊN SỬ DỤNG HỆ THỐNG TRÍCH XUẤT HOÁ ĐƠN ?
+            </h2>
             {guideds.map((guided, index) => (
                 <div key={index}>
                     <h3>{guided.title}</h3>
                     <p>{guided.description}</p>
+                    <br></br>
                 </div>
             ))}
         </div>
