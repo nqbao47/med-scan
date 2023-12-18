@@ -1,0 +1,21 @@
+/* CSS cho nút "Quay lại đầu trang" */
+button {
+    background-color: #007bff; /* Màu nền nút */
+    color: #fff; /* Màu chữ nút */
+    border: none; /* Không có đường viền */
+    padding: 10px 10px; /* Kích thước lề của nút */
+    cursor: pointer; /* Con trỏ chuột khi di chuyển qua nút */
+    border-radius: 18px; /* Bo tròn góc của nút */
+    font-size: 10px; /* Kích thước chữ */
+}
+
+// button:hover {
+//     background-color: #0056b3; /* Màu nền khi di chuột qua nút */
+// }
+
+/* CSS để đặt nút ở vị trí cố định */
+button.fixed {
+    position: fixed; /* Nút sẽ giữ ở vị trí cố định trên trang khi cuộn */
+    bottom: 20px; /* Khoảng cách từ đáy trang */
+    right: 20px; /* Khoảng cách từ bên phải trang */
+}

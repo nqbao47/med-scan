@@ -16,6 +16,7 @@ const cx = classNames.bind(styles);
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
     const [searchQuery, setSearchQuery] = useState(''); // Thêm state để lưu trữ giá trị từ ô nhập liệu
+    const [typingTimeout, setTypingTimeout] = useState(null);
 
     useEffect(() => {
         setTimeout(() => {
@@ -47,15 +48,50 @@ function Header() {
         console.log('handleClearSearch is actived');
     };
 
+    const handleInputChange = (e) => {
+        const inputValue = e.target.value;
+        setSearchQuery(inputValue);
+
+        // Clear trước khi đặt timeout mới (người dùng đang tiếp tục nhập)
+        if (typingTimeout) {
+            clearTimeout(typingTimeout);
+        }
+
+        // Đặt timeout mới để gọi API sau 2 giây kể từ lần cuối cùng người dùng nhập
+        const newTimeout = setTimeout(() => {
+            handleSearch();
+        }, 1000);
+
+        setTypingTimeout(newTimeout);
+    };
+
+    const handlePaste = (e) => {
+        // Xóa timeout hiện tại (nếu có) khi người dùng paste
+        if (typingTimeout) {
+            clearTimeout(typingTimeout);
+        }
+
+        // Đặt timeout mới để gọi API sau 2 giây kể từ lần cuối cùng người dùng paste
+        const newTimeout = setTimeout(() => {
+            handleSearch();
+        }, 2000);
+
+        setTypingTimeout(newTimeout);
+    };
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <img src={images.logo} alt="med-scan"></img>
+                    <img style={{ marginLeft: '15px' }} src={images.logo} alt="med-scan"></img>
                 </div>
                 <Tippy
                     interactive
                     visible={searchResult.length > 0}
+                    onClickOutside={() => {
+                        // This function will be called when a click occurs outside the Tippy content
+                        setSearchResult([]); // Close the Tippy by clearing the search results
+                    }}
                     render={(attrs) => (
                         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                             <PopperWrapper>
@@ -76,7 +112,9 @@ function Header() {
                             placeholder="Nhập tên thuốc bạn cần tìm..."
                             spellCheck={false}
                             value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)} // Cập nhật giá trị searchQuery khi người dùng nhập
+                            // onChange={(e) => setSearchQuery(e.target.value)} // Cập nhật giá trị searchQuery khi người dùng nhập
+                            onChange={handleInputChange}
+                            onPaste={handlePaste}
                         />
                         <button className={cx('clear')} onClick={handleClearSearch}>
                             <FontAwesomeIcon icon={faCircleXmark} />

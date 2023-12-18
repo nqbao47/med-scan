@@ -25,12 +25,12 @@ export const searchMedicine = async (query) => {
     }
 };
 
-export const uploadImage = async (imageFile) => {
+export const extractMedicines = async (imageFile) => {
     try {
         const formData = new FormData();
         formData.append('image', imageFile);
 
-        const response = await axios.post(`${backendURL}/api/upload_image`, formData, {
+        const response = await axios.post(`${backendURL}/api/extract_medicines`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data', //Content-Type là 'multipart/form-data' để xác định rằng dữ liệu gửi lên là dạng form data
             },
@@ -41,6 +41,23 @@ export const uploadImage = async (imageFile) => {
         throw error;
     }
 };
+
+// export const uploadImage = async (imageFile) => {
+//     try {
+//         const formData = new FormData();
+//         formData.append('image', imageFile);
+
+//         const response = await axios.post(`${backendURL}/api/upload_image`, formData, {
+//             headers: {
+//                 'Content-Type': 'multipart/form-data', //Content-Type là 'multipart/form-data' để xác định rằng dữ liệu gửi lên là dạng form data
+//             },
+//         });
+
+//         return response.data;
+//     } catch (error) {
+//         throw error;
+//     }
+// };
 
 export const fetchGuidedLine = async () => {
     try {
